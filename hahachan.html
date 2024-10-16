@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HahaChan</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="/Lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="/Lib/bootstrap/dist/css/all.min.css" rel="stylesheet"> 
+    <link href="/Lib/style.css" rel="stylesheet">
+    <style>
+        /* Định dạng chung */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Định dạng phần đầu trang */
+        .header {
+            background-color: #e4002b;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        .header img {
+            max-width: 150px;
+        }
+
+        /* Định dạng menu */
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 40px; /* Khoảng cách giữa các menu item */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 16px; /* Padding để tăng diện tích nhấp chuột */
+        }
+        
+        .navbar a:hover {
+            color: #e4002b;
+        }
+        .navbar {
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            position: relative; /* Để chứa dropdown */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .navbar a:hover {
+            color: #e4002b;
+        }
+
+        /* Định dạng dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #555; /* Màu nhạt hơn */
+            padding: 8px 12px; /* Chỉnh sửa padding */
+            text-decoration: none;
+            display: block;
+            font-size: 14px; /* Kích thước chữ nhỏ hơn */
+            font-weight: normal; /* Đổi font-weight */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Định dạng thanh tìm kiếm và nút đăng nhập */
+        .search-login {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+        }
+
+        .search-login input[type="text"] {
+            padding: 8px;
+            font-size: 14px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-login button {
+            background-color: #e4002b;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-login button:hover {
+            background-color: #c20023;
+        }
+
+        /* Định dạng banner */
+        .banner {
+            position: relative;
+            text-align: center;
+            color: #fff;
+            background: url('https://huuhonexpress.com/wp-content/uploads/2021/05/giao-hang-la-hinh-thuc-van-chuyen-va-giao-hang-truc-tiep.jpg') center center no-repeat;
+            background-size: cover;
+            height: 700px;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .banner-text h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #e4002b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .banner-text h2 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #e4002b;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .buttons a:hover {
+            background-color: #c20023;
+        }
+
+        /* Đăng nhập */
+        .login-container {
+            margin-top: 120px;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 120px);
+        }
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .login-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .social-login {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .social-login .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .login-options a {
+            color: #ff0000;
+        }
+        .login-options a:hover {
+            text-decoration: underline;
+        }
+         /* Phần thông tin cuối trang */
+/* Phần thông tin cuối trang */
+.footer-info {
+    background-color: #1a1a2e; /* Màu nền nổi bật */
+    color: #e8e8e8; /* Màu chữ sáng */
+    padding: 30px;
+    text-align: left;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    margin-top: 30px; /* Khoảng cách với phần trước */
+}
+
+.footer-content {
+    max-width: 600px; /* Giới hạn chiều rộng */
+    margin: 0 auto; /* Căn giữa */
+}
+
+.footer-info h4 {
+    font-size: 24px; /* Kích thước chữ lớn */
+    margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+    text-transform: uppercase; /* Chữ in hoa */
+    border-bottom: 2px solid #f70015; /* Đường dưới tiêu đề */
+    padding-bottom: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
+}
+
+.footer-info p {
+    font-size: 16px; /* Kích thước chữ vừa phải */
+    margin-bottom: 10px; /* Khoảng cách giữa các đoạn */
+}
+
+    </style>
+</head>
+<body>
+    <!-- Phần đầu trang -->
+    <div class="header">
+        <img src="https://babyautoru.com/Web/Resources/Uploaded/1/images/tin-tuc/chinh-sach-giao-hang-cua-baby_autoru_com.jpg" alt="Viettel Logo">
+    </div>
+
+    <!-- Menu điều hướng -->
+    <div class="navbar">
+        <ul>
+            <li><a href="#">Trang chủ</a></li>
+            <li class="dropdown">
+                <a href="#">Hỗ trợ khách hàng</a>
+                <div class="dropdown-content">
+                    <a href="#" onclick="window.location.href='http://127.0.0.1:5500/haha-hotro.html'; return false;">Thông tin liên hệ</a>
+                    <a href="#" onclick="window.location.href='http://127.0.0.1:5500/haha-form.html'; return false;">Form hỗ trợ khách hàng</a>
+                </div>
+            </li>
+            <li><a href="#" onclick="window.location.href='http://127.0.0.1:5500/haha-taodonhang.html'; return false;">Tạo đơn hàng</a></li>
+            <li><a href="#" onclick="window.location.href='http://127.0.0.1:5500/haha-dsdonhang.html'; return false;">Quản lý đơn hàng</a></li>
+            <li class="dropdown">
+                <a href="#">Quản lý tài khoản</a>
+                <div class="dropdown-content">
+                    <a href="#"onclick="window.location.href='http://127.0.0.1:5500/haha-taikhoan.html'; return false;" >Thông tin tài khoản</a>
+                    <a href="#"onclick="window.location.href='http://127.0.0.1:5500/haha-doimatkhau.html'; return false;">Đổi mật khẩu</a>
+                    <a href="#"onclick="window.location.href='http://127.0.0.1:5500/haha-suataikhoan.html'; return false;">Sửa tài khoản</a>
+                    <a href="#"onclick="window.location.href='http://127.0.0.1:5500/hahachanpre.html'; return false;">Đăng xuất</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Thanh tìm kiếm -->
+    <div class="search-login">
+        <input type="text" placeholder="Tìm kiếm">
+<!-- Nút đăng nhập -->
+    </div>
+
+    <!-- Banner chính -->
+    <div class="banner">
+        <div class="banner-text">
+            <h1>Giao hàng Việt</h1>
+            <h2>Tiến bước toàn cầu</h2>
+        </div>
+    </div>
+
+    <!-- Nút tra cứu và dịch vụ -->
+    <div class="buttons">
+        <a href="#">Tra cứu</a>
+        <a href="#">Dịch vụ</a>
+    </div>
+    <div class="image-container" style="text-align: center; margin: 20px 0;">
+        <img src="https://file.hstatic.net/200000472237/file/banggianew_36302498b18a48c985b75caa9c5618f9_1024x1024.png" alt="Bảng giá dịch vụ" style="max-width: 100%; height: auto;">
+    </div>
+    <div class="image-container" style="text-align: center; margin: 20px 0;">
+        <img src="https://daiphatvienthong.vn/upload/images/giao%20hang.jpg" alt="Bảng giá dịch vụ" style="max-width: 100%; height: auto;">
+    </div>
+    <!-- Phần thông tin cuối trang -->    
+<div class="footer-info" style="background-color: #000000d5; padding: 20px; position: relative;">
+    <div style="max-width: 600px; margin: 0 auto;">
+        <h4>Thông tin liên hệ</h4>
+        <p><strong>Email:</strong> ha.nt225622@sis.hust.edu.vn</p>
+        <p><strong>Số điện thoại:</strong> 0983470815</p>
+        <p><strong>Địa chỉ:</strong> Trường CNTT và Truyền thông - Đại học Bách Khoa Hà Nội</p>
+    </div>
+</div>
+    <!-- Trang đăng nhập -->
+    <div class="login-container">
+        <div class="card login-card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Đăng nhập</h4>
+                <form>
+                    <div class="form-group">
+                        <label for="username">UserID:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Nhập ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary login-btn">Đăng nhập</button>
+                    <div class="login-options">
+                        <a href="#">Quên mật khẩu?</a>
+                        <a href="/register.html">Đăng ký</a>
+                    </div>
+                </form>
+                <div class="social-login">
+                    <button class="btn btn-danger"><i class="fab fa-google"></i> Đăng nhập với Google</button>
+                    <button class="btn btn-primary"><i class="fab fa-facebook-f"></i> Đăng nhập với Facebook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer text-center mt-4">
+        <p>&copy; Hahachan ShipSmart.</p>
+    </div>
+
+    <!-- Bootstrap JS và các thư viện liên quan -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function showLogin() {
+            document.querySelector('.login-container').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Tài Khoản</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #e4002b;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2>HahaChan ShipSmart</h2>
+    </div>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h4 class="text-center">Sửa Tài Khoản</h4>
+            <form id="editAccountForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="userID">User ID</label>
+                        <input type="text" class="form-control" id="userID" value="U001" required readonly>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name">Tên</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="phone">Số Điện Thoại</label>
+                        <input type="text" class="form-control" id="phone" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="address">Địa Chỉ</label>
+                        <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="birthdate">Năm Sinh</label>
+                        <input type="date" class="form-control" id="birthdate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="role">Quyền</label>
+                    <select class="form-control" id="role" required>
+                        <option value="manager">Quản lý</option>
+                        <option value="shipper">Shipper</option>
+                        <option value="user">Người dùng</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a href="/Admin/Account.html" class="btn btn-secondary">Hủy</a>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 HahaChan ShipSmart</p>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
